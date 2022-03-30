@@ -17,8 +17,3 @@ class WelcomeMessage
       row1: [".", ".", ".", ".", ".", ".", "."]}
   end
 end
-
-# welcome = WelcomeMessage.new
-# puts welcome.greeting
-# welcome.new_gameboard
-# welcome.gameboard.map {|key,value|puts value.join}
