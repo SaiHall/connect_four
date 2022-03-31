@@ -15,9 +15,9 @@ RSpec.describe 'Game' do
   end
 
   it 'can reset the gameboard' do
-  connect_four = Game.new
-  connect_four.reset_gameboard
-  expect(connect_four.gameboard).to eq({
+    connect_four = Game.new
+    connect_four.reset_gameboard
+    expect(connect_four.gameboard).to eq({
     row0: ["A", "B", "C", "D", "E", "F", "G"],
     row6: [".", ".", ".", ".", ".", ".", "."],
     row5: [".", ".", ".", ".", ".", ".", "."],
@@ -26,5 +26,32 @@ RSpec.describe 'Game' do
     row2: [".", ".", ".", ".", ".", ".", "."],
     row1: [".", ".", ".", ".", ".", ".", "."]
     })
+  end
+
+  it 'can update gameboard by index on lowest available row' do
+    connect_four = Game.new
+    connect_four.reset_gameboard
+    connect_four.update_board(3)
+    expect(connect_four.gameboard).to eq({
+    row0: ["A", "B", "C", "D", "E", "F", "G"],
+    row6: [".", ".", ".", ".", ".", ".", "."],
+    row5: [".", ".", ".", ".", ".", ".", "."],
+    row4: [".", ".", ".", ".", ".", ".", "."],
+    row3: [".", ".", ".", ".", ".", ".", "."],
+    row2: [".", ".", ".", ".", ".", ".", "."],
+    row1: [".", ".", ".", "X", ".", ".", "."]
+    })
+
+    connect_four.update_board(3)
+    expect(connect_four.gameboard).to eq({
+    row0: ["A", "B", "C", "D", "E", "F", "G"],
+    row6: [".", ".", ".", ".", ".", ".", "."],
+    row5: [".", ".", ".", ".", ".", ".", "."],
+    row4: [".", ".", ".", ".", ".", ".", "."],
+    row3: [".", ".", ".", ".", ".", ".", "."],
+    row2: [".", ".", ".", "X", ".", ".", "."],
+    row1: [".", ".", ".", "X", ".", ".", "."]
+    })
+    
   end
 end
