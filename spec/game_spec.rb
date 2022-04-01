@@ -31,7 +31,7 @@ RSpec.describe 'Game' do
   it 'can update gameboard by index on lowest available row' do
     connect_four = Game.new
     connect_four.reset_gameboard
-    connect_four.update_board(3)
+    connect_four.update_board(3, 'X')
     expect(connect_four.gameboard).to eq({
     row0: ["A", "B", "C", "D", "E", "F", "G"],
     row6: [".", ".", ".", ".", ".", ".", "."],
@@ -42,7 +42,7 @@ RSpec.describe 'Game' do
     row1: [".", ".", ".", "X", ".", ".", "."]
     })
 
-    connect_four.update_board(3)
+    connect_four.update_board(3, 'X')
     expect(connect_four.gameboard).to eq({
     row0: ["A", "B", "C", "D", "E", "F", "G"],
     row6: [".", ".", ".", ".", ".", ".", "."],
@@ -52,6 +52,16 @@ RSpec.describe 'Game' do
     row2: [".", ".", ".", "X", ".", ".", "."],
     row1: [".", ".", ".", "X", ".", ".", "."]
     })
-    
+  end
+  it 'will not take a choice for a full column' do
+    connect_four = Game.new
+    connect_four.reset_gameboard
+    connect_four.update_board(3, 'X')
+    connect_four.update_board(3, 'X')
+    connect_four.update_board(3, 'X')
+    connect_four.update_board(3, 'X')
+    connect_four.update_board(3, 'X')
+    connect_four.update_board(3, 'X')
+    expect(connect_four.valid_choice?(3)).to eq(false)
   end
 end
