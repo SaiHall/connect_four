@@ -1,4 +1,5 @@
 require 'pry'
+require './lib/welcome_message'
 
 class Game
   attr_reader :gameboard
@@ -18,13 +19,12 @@ class Game
   end
 
   def update_board(index, piece)
+    if !valid_choice?(index)
+      return invalid_choice
+    end
     @gameboard.sort.find do |key,value|
       if value[index] == '.'
         value[index] = piece
-    # @gameboard = @gameboard.values[index].find do |element|
-    #   element == "."
-    #   element = 'X'
-    #   return @gameboard
       end
     end
     print_board
@@ -40,23 +40,42 @@ class Game
       if @gameboard[:row0].include?(user_input) && user_input.length == 1#i dont think this will accept capitalized versions of the letters?..
         update_board(@gameboard[:row0].index(user_input),"X")
       else
-        puts "Invalid selection please try again!"
+        invalid_choice
       end
   end
 
   def computer_turn
     computer = [0, 1, 2, 3, 4, 5, 6]
     comp_choice = computer.sample
-      update_board(comp_choice, "O")
+    until valid_choice?(comp_choice)
+      comp_choice = computer.sample
+    end
+    update_board(comp_choice, "O")
+  end
+
+  def invalid_choice
+    puts "Choice not valid."
+    input
+  end
+
+  def valid_choice?(index)
+    if @gameboard[:row6][index] == '.'
+      return true
+    else
+      return false
+    end
+  end
+
+  def play
+    welcome = WelcomeMessage.new
+    puts welcome.greeting
+    reset_gameboard
+    print_board
+    21.times{input
+    computer_turn}
   end
 end
 
 connect_four = Game.new
-connect_four.reset_gameboard
-connect_four.input
-connect_four.computer_turn
-connect_four.input
-connect_four.computer_turn
-# connect_four.input
-# connect_four.update_board(2)
-# connect_four.gameboard.map {|key,value|puts value.join}
+
+connect_four.play
