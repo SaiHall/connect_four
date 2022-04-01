@@ -34,9 +34,20 @@ class Game
     gameboard.map {|key,value|puts value.join}
   end
 
+  def input
+    puts "Please make your selection from A-G"
+    user_input = gets.chomp.upcase
+      if @gameboard[:row0].include?(user_input) && user_input.length == 1#i dont think this will accept capitalized versions of the letters?..
+        update_board(@gameboard[:row0].index(user_input))
+      else
+        puts "Invalid selection please try again!"
+      end
+
+  end
 end
 
 # connect_four = Game.new
 # connect_four.reset_gameboard
+# connect_four.input
 # connect_four.update_board(2)
 # connect_four.gameboard.map {|key,value|puts value.join}
