@@ -3,6 +3,7 @@ require './lib/welcome_message'
 
 class Game
   attr_reader :gameboard
+  attr_accessor :gameboard
   def initialize
     @gameboard = {}
   end
@@ -65,17 +66,4 @@ class Game
       return false
     end
   end
-
-  def play
-    welcome = WelcomeMessage.new
-    puts welcome.greeting
-    reset_gameboard
-    print_board
-    21.times{input
-    computer_turn}
-  end
 end
-
-connect_four = Game.new
-
-connect_four.play
