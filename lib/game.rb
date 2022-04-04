@@ -1,11 +1,14 @@
 require 'pry'
 require './lib/welcome_message'
+require './lib/play'
 
 class Game
-  attr_reader :gameboard
-  attr_accessor :gameboard
+  attr_reader :gameboard, :placementx, :placementy
+  attr_accessor :gameboard, :placementx, :placementy
   def initialize
     @gameboard = {}
+    @placementx
+    @placementy
   end
 
   def reset_gameboard
@@ -26,6 +29,8 @@ class Game
     @gameboard.sort.find do |key,value|
       if value[index] == '.'
         value[index] = piece
+        @placementx = key
+        @placementy = index
       end
     end
     print_board
