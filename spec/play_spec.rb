@@ -27,7 +27,7 @@ RSpec.describe 'Play' do
     expect(play.horizontal_win?).to eq(false)
   end
 
-  xit "registers a horizontal win" do
+  it "registers a horizontal win" do
     play = Play.new
     play.game.gameboard = {
        row0: ["A", "B", "C", "D", "E", "F", "G"],
@@ -109,7 +109,7 @@ RSpec.describe 'Play' do
 
     expect(play.vertical_win?).to eq(true)
   end
-  it 'registers a vertical win on the right' do
+  xit 'registers a vertical win on the right' do
     play = Play.new
     play.game.gameboard = {
       row0: ["A", "B", "C", "D", "E", "F", "G"],
@@ -122,5 +122,50 @@ RSpec.describe 'Play' do
 
 
     expect(play.vertical_win?).to eq(true)
+  end
+
+  it 'registers win for diagonal' do
+    play = Play.new
+    play.game.gameboard = {
+    row0: ["A", "B", "C", "D", "E", "F", "G"],
+    row6: ["X", ".", ".", ".", ".", ".", "."],
+    row5: [".", "X", ".", ".", ".", ".", "."],
+    row4: [".", ".", "X", ".", ".", ".", "."],
+    row3: [".", ".", ".", "X", ".", ".", "."],
+    row2: [".", ".", ".", ".", ".", ".", "."],
+    row1: [".", ".", ".", ".", ".", ".", "."]}
+
+
+    expect(play.diagonal_win?).to eq(true)
+  end
+
+  it 'registers win for diagonal' do
+    play = Play.new
+    play.game.gameboard = {
+    row0: ["A", "B", "C", "D", "E", "F", "G"],
+    row6: [".", ".", "X", ".", ".", ".", "."],
+    row5: [".", ".", ".", "X", ".", ".", "."],
+    row4: [".", ".", ".", ".", "X", ".", "."],
+    row3: [".", ".", ".", ".", ".", "X", "."],
+    row2: [".", ".", ".", ".", ".", ".", "."],
+    row1: [".", ".", ".", ".", ".", ".", "."]}
+
+
+    expect(play.diagonal_win?).to eq(true)
+  end
+
+  it 'registers win for diagonal' do
+    play = Play.new
+    play.game.gameboard = {
+    row0: ["A", "B", "C", "D", "E", "F", "G"],
+    row6: [".", ".", ".", ".", ".", ".", "."],
+    row5: [".", ".", ".", ".", ".", "X", "."],
+    row4: [".", ".", ".", ".", "X", ".", "."],
+    row3: [".", ".", ".", "X", ".", ".", "."],
+    row2: [".", ".", "X", ".", ".", ".", "."],
+    row1: [".", ".", ".", ".", ".", ".", "."]}
+
+
+    expect(play.diagonal_win?).to eq(true)
   end
 end
