@@ -187,4 +187,20 @@ RSpec.describe 'Play' do
     # binding.pry
     expect(play.diagonal_win?).to eq(true)
   end
+
+  it 'registers win for diagonal in other direction' do
+    play = Play.new
+    play.game.gameboard = {
+    row0: ["A", "B", "C", "D", "E", "F", "G"],
+    row6: [".", ".", ".", ".", ".", ".", "."],
+    row5: [".", ".", ".", ".", ".", "X", "."],
+    row4: [".", ".", ".", ".", "X", ".", "."],
+    row3: [".", ".", ".", "X", ".", ".", "."],
+    row2: [".", ".", "X", ".", ".", ".", "."],
+    row1: [".", ".", ".", ".", ".", ".", "."]}
+    play.game.placementx = :row4
+    play.game.placementy = 4
+    # binding.pry
+    expect(play.diagonal_win?).to eq(true)
+  end
 end
