@@ -100,7 +100,7 @@ class Play
   end
 
   def diagonal_win?
-    left = [diag_left_down, diag_left_up].flatten
+    left = [diag_left_up.reverse, diag_left_down].flatten
     right = [diag_right_down, diag_right_up].flatten
     left.each_cons(4) do |element|
       if element == ["X", "X", "X", "X"]
@@ -116,6 +116,7 @@ class Play
         return true
       end
     end
+    return false
   end
 end
 # play = Play.new

@@ -6,12 +6,12 @@ require './lib/play'
 
 RSpec.describe 'Play' do
 
-  xit "Exists" do
+  it "Exists" do
     play = Play.new
     expect(play).to be_an_instance_of(Play)
   end
 
-  xit "registers no horizontal win" do
+  it "registers no horizontal win" do
     play = Play.new
     play.game.reset_gameboard
     gameboard = {
@@ -65,7 +65,7 @@ RSpec.describe 'Play' do
     expect(play.horizontal_win?).to eq(true)
   end
 
-  xit 'Registers horizonatal wins for O' do
+  it 'Registers horizonatal wins for O' do
 
     play = Play.new
     play.game.gameboard = {
@@ -80,7 +80,7 @@ RSpec.describe 'Play' do
     expect(play.horizontal_win?).to eq(true)
   end
 
-  xit 'registers no vertical win' do
+  it 'registers no vertical win' do
     play = Play.new
     play.game.reset_gameboard
     gameboard = {
@@ -95,7 +95,7 @@ RSpec.describe 'Play' do
 
     expect(play.vertical_win?).to eq(false)
   end
-  xit 'registers a vertical win on the left' do
+  it 'registers a vertical win on the left' do
     play = Play.new
     play.game.gameboard = {
       row0: ["A", "B", "C", "D", "E", "F", "G"],
@@ -109,7 +109,7 @@ RSpec.describe 'Play' do
 
     expect(play.vertical_win?).to eq(true)
   end
-  xit 'registers a vertical win on the right' do
+  it 'registers a vertical win on the right' do
     play = Play.new
     play.game.gameboard = {
       row0: ["A", "B", "C", "D", "E", "F", "G"],
@@ -134,12 +134,13 @@ RSpec.describe 'Play' do
     row3: [".", ".", ".", "X", ".", ".", "."],
     row2: [".", ".", ".", ".", ".", ".", "."],
     row1: [".", ".", ".", ".", ".", ".", "."]}
-
+    play.game.placementx = :row3
+    play.game.placementy = 3
 
     expect(play.diagonal_win?).to eq(true)
   end
 
-  it 'registers win for diagonal' do
+  it 'registers win for diagonal, last input not on end of 4' do
     play = Play.new
     play.game.gameboard = {
     row0: ["A", "B", "C", "D", "E", "F", "G"],
@@ -149,12 +150,13 @@ RSpec.describe 'Play' do
     row3: [".", ".", ".", ".", ".", "X", "."],
     row2: [".", ".", ".", ".", ".", ".", "."],
     row1: [".", ".", ".", ".", ".", ".", "."]}
-
+    play.game.placementx = :row4
+    play.game.placementy = 4
 
     expect(play.diagonal_win?).to eq(true)
   end
 
-  it 'registers win for diagonal' do
+  it 'registers win for diagonal in other direction' do
     play = Play.new
     play.game.gameboard = {
     row0: ["A", "B", "C", "D", "E", "F", "G"],
@@ -164,8 +166,25 @@ RSpec.describe 'Play' do
     row3: [".", ".", ".", "X", ".", ".", "."],
     row2: [".", ".", "X", ".", ".", ".", "."],
     row1: [".", ".", ".", ".", ".", ".", "."]}
+    play.game.placementx = :row4
+    play.game.placementy = 4
+    # binding.pry
+    expect(play.diagonal_win?).to eq(true)
+  end
 
-
+  it 'registers win for diagonal in other direction' do
+    play = Play.new
+    play.game.gameboard = {
+    row0: ["A", "B", "C", "D", "E", "F", "G"],
+    row6: [".", ".", ".", "X", ".", ".", "."],
+    row5: [".", ".", "X", ".", ".", ".", "."],
+    row4: [".", "X", ".", ".", ".", ".", "."],
+    row3: ["X", ".", ".", ".", ".", ".", "."],
+    row2: [".", ".", ".", ".", ".", ".", "."],
+    row1: [".", ".", ".", ".", ".", ".", "."]}
+    play.game.placementx = :row4
+    play.game.placementy = 1
+    # binding.pry
     expect(play.diagonal_win?).to eq(true)
   end
 end
