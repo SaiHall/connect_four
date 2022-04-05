@@ -10,13 +10,21 @@ class Play
     @game = Game.new
   end
 
-  def play
+  def start
     welcome = WelcomeMessage.new
     puts welcome.greeting
     @game.reset_gameboard
     @game.print_board
-    21.times{@game.input
-    @game.computer_turn}
+    puts "Enter 'p' to play. Enter 'q' to quit."
+    answer = gets.chomp
+    if answer == "p"
+      loopdy_doo
+    elsif answer == "q"
+      puts "Quitting......"
+      exit
+    else
+      puts "That was not a valid choice, NO GAME FOR YOU!"
+    end
   end
 
   def horizontal_win?
@@ -45,11 +53,12 @@ class Play
     end
     return false
   end
+
   def diag_left_up
     @diag_array = []
     @x = @game.placementx[-1].to_i
     @y = @game.placementy
-    until @x == 7 || @y == -1 do
+    until @x == 7 || @y == 7 do
       key = ("row" + "#{@x}").to_sym
       @diag_array << @game.gameboard[key][@y]
       @x += 1
@@ -63,7 +72,7 @@ class Play
     @diag_array = []
     @x = @game.placementx[-1].to_i
     @y = @game.placementy
-    until @x == 0 || @y == 7 do
+    until @x == 0 || @y == -1 do
       key = ("row" + "#{@x}").to_sym
       @diag_array << @game.gameboard[key][@y]
       @x -= 1
@@ -118,8 +127,48 @@ class Play
     end
     return false
   end
+
+  def draw?
+    if @game.gameboard[:row6].include?(".")
+      return false
+    else
+      return true
+    end
+  end
+
+  def end?
+    if horizontal_win?
+      puts "Horizonatal Winner!"
+      start
+    elsif vertical_win?
+      puts "Vertical Winner!"
+      start
+    elsif diagonal_win?
+      puts "Diagon alley Winner!"
+      start
+    elsif draw?
+      puts "Professor T. would NEVER!"
+      start
+    else
+      return false
+    end
+  end
+
+  def loopdy_doo
+    4.times do
+      @game.input
+      @game.computer_turn
+    end
+    until end?
+      @game.input
+      end?
+      @game.computer_turn
+    end
+  end
+
 end
-# play = Play.new
+play = Play.new
+play.start
 # play.game.gameboard = {
 #   row0: ["A", "B", "C", "D", "E", "F", "G"],
 #   row6: [".", ".", ".", ".", ".", ".", "."],
