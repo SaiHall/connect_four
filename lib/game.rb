@@ -1,6 +1,5 @@
 require 'pry'
 require './lib/welcome_message'
-require './lib/play'
 
 class Game
   attr_reader :gameboard, :placementx, :placementy
