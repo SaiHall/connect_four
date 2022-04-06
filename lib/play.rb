@@ -138,13 +138,13 @@ class Play
 
   def end?
     if horizontal_win?
-      puts "Horizonatal Winner!"
+      puts "Horizontal Winner! #{@game.play_or_c} Wins!"
       start
     elsif vertical_win?
-      puts "Vertical Winner!"
+      puts "Vertical Winner! #{@game.play_or_c} Wins!"
       start
     elsif diagonal_win?
-      puts "Diagon alley Winner!"
+      puts "Diagon alley Winner! #{@game.play_or_c} Wins!"
       start
     elsif draw?
       puts "Professor T. would NEVER!"
@@ -155,13 +155,15 @@ class Play
   end
 
   def loopdy_doo
-    4.times do
+    3.times do
       @game.input
       @game.computer_turn
     end
     until end?
       @game.input
-      end?
+      if end?
+        break
+      end
       @game.computer_turn
     end
   end

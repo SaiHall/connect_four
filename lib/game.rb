@@ -2,12 +2,13 @@ require 'pry'
 require './lib/welcome_message'
 
 class Game
-  attr_reader :gameboard, :placementx, :placementy
-  attr_accessor :gameboard, :placementx, :placementy
+  attr_reader :gameboard, :placementx, :placementy, :last_piece
+  attr_accessor :gameboard, :placementx, :placementy, :last_piece
   def initialize
     @gameboard = {}
     @placementx
     @placementy
+    @last_piece
   end
 
   def reset_gameboard
@@ -30,6 +31,7 @@ class Game
         value[index] = piece
         @placementx = key
         @placementy = index
+        @last_piece = piece
       end
     end
     print_board
@@ -68,6 +70,14 @@ class Game
       return true
     else
       return false
+    end
+  end
+
+  def play_or_c
+    if @last_piece == "X"
+      return "Player"
+    elsif @last_piece == "O"
+      return "Computer"
     end
   end
 end
