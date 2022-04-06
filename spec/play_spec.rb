@@ -1,6 +1,5 @@
 require 'rspec'
 require 'pry'
-# require '.lib/welcome_message'
 require './lib/game'
 require './lib/play'
 
@@ -15,13 +14,13 @@ RSpec.describe 'Play' do
     play = Play.new
     play.game.reset_gameboard
     gameboard = {
-    row0: ["A", "B", "C", "D", "E", "F", "G"],
-    row6: [".", ".", ".", ".", ".", ".", "."],
-    row5: [".", ".", ".", ".", ".", ".", "."],
-    row4: [".", ".", ".", ".", ".", ".", "."],
-    row3: [".", ".", ".", ".", ".", ".", "."],
-    row2: [".", ".", ".", ".", ".", ".", "."],
-    row1: [".", ".", ".", ".", ".", ".", "."]}
+      row0: ["A", "B", "C", "D", "E", "F", "G"],
+      row6: [".", ".", ".", ".", ".", ".", "."],
+      row5: [".", ".", ".", ".", ".", ".", "."],
+      row4: [".", ".", ".", ".", ".", ".", "."],
+      row3: [".", ".", ".", ".", ".", ".", "."],
+      row2: [".", ".", ".", ".", ".", ".", "."],
+      row1: [".", ".", ".", ".", ".", ".", "."]}
 
 
     expect(play.horizontal_win?).to eq(false)
@@ -127,13 +126,13 @@ RSpec.describe 'Play' do
   it 'registers win for diagonal' do
     play = Play.new
     play.game.gameboard = {
-    row0: ["A", "B", "C", "D", "E", "F", "G"],
-    row6: ["X", ".", ".", ".", ".", ".", "."],
-    row5: [".", "X", ".", ".", ".", ".", "."],
-    row4: [".", ".", "X", ".", ".", ".", "."],
-    row3: [".", ".", ".", "X", ".", ".", "."],
-    row2: [".", ".", ".", ".", ".", ".", "."],
-    row1: [".", ".", ".", ".", ".", ".", "."]}
+      row0: ["A", "B", "C", "D", "E", "F", "G"],
+      row6: ["X", ".", ".", ".", ".", ".", "."],
+      row5: [".", "X", ".", ".", ".", ".", "."],
+      row4: [".", ".", "X", ".", ".", ".", "."],
+      row3: [".", ".", ".", "X", ".", ".", "."],
+      row2: [".", ".", ".", ".", ".", ".", "."],
+      row1: [".", ".", ".", ".", ".", ".", "."]}
     play.game.placementx = :row3
     play.game.placementy = 3
 
@@ -143,13 +142,13 @@ RSpec.describe 'Play' do
   it 'registers win for diagonal, last input not on end of 4' do
     play = Play.new
     play.game.gameboard = {
-    row0: ["A", "B", "C", "D", "E", "F", "G"],
-    row6: [".", ".", "X", ".", ".", ".", "."],
-    row5: [".", ".", ".", "X", ".", ".", "."],
-    row4: [".", ".", ".", ".", "X", ".", "."],
-    row3: [".", ".", ".", ".", ".", "X", "."],
-    row2: [".", ".", ".", ".", ".", ".", "."],
-    row1: [".", ".", ".", ".", ".", ".", "."]}
+      row0: ["A", "B", "C", "D", "E", "F", "G"],
+      row6: [".", ".", "X", ".", ".", ".", "."],
+      row5: [".", ".", ".", "X", ".", ".", "."],
+      row4: [".", ".", ".", ".", "X", ".", "."],
+      row3: [".", ".", ".", ".", ".", "X", "."],
+      row2: [".", ".", ".", ".", ".", ".", "."],
+      row1: [".", ".", ".", ".", ".", ".", "."]}
     play.game.placementx = :row4
     play.game.placementy = 4
 
@@ -159,29 +158,28 @@ RSpec.describe 'Play' do
   it 'registers win for diagonal in other direction' do
     play = Play.new
     play.game.gameboard = {
-    row0: ["A", "B", "C", "D", "E", "F", "G"],
-    row6: [".", ".", ".", ".", ".", ".", "."],
-    row5: [".", ".", ".", ".", ".", "X", "."],
-    row4: [".", ".", ".", ".", "X", ".", "."],
-    row3: [".", ".", ".", "X", ".", ".", "."],
-    row2: [".", ".", "X", ".", ".", ".", "."],
-    row1: [".", ".", ".", ".", ".", ".", "."]}
+      row0: ["A", "B", "C", "D", "E", "F", "G"],
+      row6: [".", ".", ".", ".", ".", ".", "."],
+      row5: [".", ".", ".", ".", ".", "X", "."],
+      row4: [".", ".", ".", ".", "X", ".", "."],
+      row3: [".", ".", ".", "X", ".", ".", "."],
+      row2: [".", ".", "X", ".", ".", ".", "."],
+      row1: [".", ".", ".", ".", ".", ".", "."]}
     play.game.placementx = :row4
     play.game.placementy = 4
-    # binding.pry
     expect(play.diagonal_win?).to eq(true)
   end
 
   it 'registers win for diagonal in other direction' do
     play = Play.new
     play.game.gameboard = {
-    row0: ["A", "B", "C", "D", "E", "F", "G"],
-    row6: [".", ".", ".", "X", ".", ".", "."],
-    row5: [".", ".", "X", ".", ".", ".", "."],
-    row4: [".", "X", ".", ".", ".", ".", "."],
-    row3: ["X", ".", ".", ".", ".", ".", "."],
-    row2: [".", ".", ".", ".", ".", ".", "."],
-    row1: [".", ".", ".", ".", ".", ".", "."]}
+      row0: ["A", "B", "C", "D", "E", "F", "G"],
+      row6: [".", ".", ".", "X", ".", ".", "."],
+      row5: [".", ".", "X", ".", ".", ".", "."],
+      row4: [".", "X", ".", ".", ".", ".", "."],
+      row3: ["X", ".", ".", ".", ".", ".", "."],
+      row2: [".", ".", ".", ".", ".", ".", "."],
+      row1: [".", ".", ".", ".", ".", ".", "."]}
     play.game.placementx = :row4
     play.game.placementy = 1
     # binding.pry
@@ -191,16 +189,43 @@ RSpec.describe 'Play' do
   it 'registers win for diagonal in other direction' do
     play = Play.new
     play.game.gameboard = {
-    row0: ["A", "B", "C", "D", "E", "F", "G"],
-    row6: [".", ".", ".", ".", ".", ".", "."],
-    row5: [".", ".", ".", ".", ".", "X", "."],
-    row4: [".", ".", ".", ".", "X", ".", "."],
-    row3: [".", ".", ".", "X", ".", ".", "."],
-    row2: [".", ".", "X", ".", ".", ".", "."],
-    row1: [".", ".", ".", ".", ".", ".", "."]}
+      row0: ["A", "B", "C", "D", "E", "F", "G"],
+      row6: [".", ".", ".", ".", ".", ".", "."],
+      row5: [".", ".", ".", ".", ".", "X", "."],
+      row4: [".", ".", ".", ".", "X", ".", "."],
+      row3: [".", ".", ".", "X", ".", ".", "."],
+      row2: [".", ".", "X", ".", ".", ".", "."],
+      row1: [".", ".", ".", ".", ".", ".", "."]}
     play.game.placementx = :row4
     play.game.placementy = 4
-    # binding.pry
     expect(play.diagonal_win?).to eq(true)
+  end
+
+  it 'accurately reports a draw' do
+    play = Play.new
+    play.game.gameboard = {
+      row0: ["A", "B", "C", "D", "E", "F", "G"],
+      row6: ["X", "O", "X", "O", "X", "O", "X"],
+      row5: ["X", "O", "X", "O", "X", "O", "X"],
+      row4: ["X", "O", "X", "O", "X", "O", "X"],
+      row3: ["O", "X", "O", "X", "O", "X", "O"],
+      row2: ["O", "X", "O", "X", "O", "X", "O"],
+      row1: ["O", "X", "O", "X", "O", "X", "O"]}
+
+    expect(play.draw?).to eq(true)
+  end
+  it 'does not report a draw when there is not one' do
+    play = Play.new
+    play.game.reset_gameboard
+    gameboard = {
+      row0: ["A", "B", "C", "D", "E", "F", "G"],
+      row6: ["X", "O", "X", "O", "X", "O", "."],
+      row5: ["X", "O", "X", "O", "X", "O", "X"],
+      row4: ["X", "O", "X", "O", "X", "O", "X"],
+      row3: ["O", "X", "O", "X", "O", "X", "O"],
+      row2: ["O", "X", "O", "X", "O", "X", "O"],
+      row1: ["O", "X", "O", "X", "O", "X", "O"]}
+
+    expect(play.draw?).to eq(false)
   end
 end

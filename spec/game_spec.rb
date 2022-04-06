@@ -64,4 +64,16 @@ RSpec.describe 'Game' do
     connect_four.update_board(3, 'X')
     expect(connect_four.valid_choice?(3)).to eq(false)
   end
+
+  it 'returns correct last piece player' do
+    connect_four = Game.new
+    connect_four.last_piece = "X"
+
+    expect(connect_four.play_or_c).to eq("Player")
+
+    connect_four = Game.new
+    connect_four.last_piece = "O"
+
+    expect(connect_four.play_or_c).to eq("Computer")
+  end
 end
