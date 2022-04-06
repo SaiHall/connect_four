@@ -24,6 +24,7 @@ class Play
       exit
     else
       puts "That was not a valid choice, NO GAME FOR YOU!"
+      exit
     end
   end
 
