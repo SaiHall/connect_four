@@ -1,3 +1,3 @@
 # Connect Four
 ## Sai Hall and Parker Thomson
-    - Iteration one completed in Driver/Navigator
+    - Iteration one, two, and three completed in Driver/Navigator except for spikes.
