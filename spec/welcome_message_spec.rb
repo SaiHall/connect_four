@@ -11,14 +11,6 @@ RSpec.describe "Welcome message" do
 
   it 'has a greeting' do
     welcome = WelcomeMessage.new
-    expect(welcome.greeting).to eq('Welcome to Connect Four!')
+    expect(welcome.greeting).to eq('Welcome to Connect Four! Sai and Parker hope you enjoy your stay.')
   end
 end
-
-row0: ["A", "B", "C", "D", "E", "F", "G"],
-row6: [".", ".", ".", ".", ".", ".", "."],
-row5: [".", ".", ".", ".", ".", ".", "."],
-row4: [".", ".", ".", ".", ".", ".", "."],
-row3: [".", ".", ".", ".", ".", ".", "."],
-row2: [".", ".", ".", ".", ".", ".", "."],
-row1: [".", ".", ".", ".", ".", ".", "."]
