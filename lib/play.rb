@@ -167,17 +167,4 @@ class Play
       @game.computer_turn
     end
   end
-
 end
-play = Play.new
-play.start
-# play.game.gameboard = {
-#   row0: ["A", "B", "C", "D", "E", "F", "G"],
-#   row6: [".", ".", ".", ".", ".", ".", "."],
-#   row5: [".", ".", ".", ".", ".", ".", "."],
-#   row4: ["S", ".", ".", ".", ".", ".", "K"],
-#   row3: [".", "L", ".", ".", ".", "R", "."],
-#   row2: [".", ".", "P", ".", "W", ".", "."],
-#   row1: [".", ".", ".", ".", ".", ".", "."]}
-# play.game.input
-# play.diagonal_down_left?
