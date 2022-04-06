@@ -1,6 +1,6 @@
 require './lib/welcome_message'
+require './lib/game'
+require './lib/play'
 
-welcome = WelcomeMessage.new
-puts welcome.greeting
-welcome.new_gameboard
-welcome.gameboard.map {|key,value|puts value.join}
+connect_four = Play.new
+connect_four.start
